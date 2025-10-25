@@ -4,21 +4,21 @@ import { FormItem } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { PasswordInput } from '@/components/ui/password-input'
 import { signUp } from '@/actions/signup'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '../ui/card'
-import Link from 'next/link'
-import { Separator } from '../ui/separator'
-import { useActionState, useEffect } from 'react'
-import { ErrorMessage } from '../ui/error-message'
-import { Label } from '../ui/label'
 import { SignUpReturnSchema } from '@/schema/signup'
 import { useRouter } from 'next/navigation'
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from '@/components/ui/card'
+import { ErrorMessage } from '@/components/ui/error-message'
+import { Label } from '@radix-ui/react-label'
+import { Separator } from '@radix-ui/react-separator'
+import { Link } from 'lucide-react'
+import { useActionState, useEffect } from 'react'
 
 const initialState: CustomResponse<SignUpReturnSchema> = {
   data: null,

@@ -1,7 +1,7 @@
 import {
   PasswordResetForm,
   PasswordResetFormProps,
-} from '@/components/forms/password-reset'
+} from '@/components/templates/forms/password-reset'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {

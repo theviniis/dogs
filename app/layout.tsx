@@ -4,7 +4,6 @@ import './globals.css'
 import { cn } from '@/lib/utils'
 import HeaderWrapper from '@/components/templates/header-wrapper'
 import FooterWrapper from '@/components/templates/footer-wrapper'
-import { Toaster } from '@/components/ui/sonner'
 
 export const metadata: Metadata = {
   title: 'Dogs Next',
@@ -25,7 +24,6 @@ export default function RootLayout({
             <section>{children}</section>
           </main>
           <FooterWrapper />
-          <Toaster />
         </div>
       </body>
     </html>

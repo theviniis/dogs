@@ -1,4 +1,4 @@
-import { SignInForm } from '@/components/forms/signin'
+import { SignInForm } from '@/components/templates/forms/signin'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {

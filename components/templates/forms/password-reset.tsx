@@ -2,15 +2,15 @@
 
 import { Button } from '@/components/ui/button'
 import { FormItem } from '@/components/ui/form'
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
-import { ErrorMessage } from '../ui/error-message'
-import { Label } from '../ui/label'
 import { useActionState, useEffect } from 'react'
-import { SuccessMessage } from '../ui/success-message'
 import Link from 'next/link'
 import { passwordReset } from '@/actions/password-reset'
-import { PasswordInput } from '../ui/password-input'
 import { useRouter } from 'next/navigation'
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
+import { ErrorMessage } from '@/components/ui/error-message'
+import { PasswordInput } from '@/components/ui/password-input'
+import { SuccessMessage } from '@/components/ui/success-message'
+import { Label } from '@radix-ui/react-label'
 
 const initialState: CustomResponse = {
   data: null,

@@ -4,22 +4,22 @@ import { Button } from '@/components/ui/button'
 import { FormItem } from '@/components/ui/form'
 import { SignInReturnSchema } from '@/schema/signin'
 import { signIn } from '@/actions/signin'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '../ui/card'
-import Link from 'next/link'
-import { Separator } from '../ui/separator'
-import { ErrorMessage } from '../ui/error-message'
-import { Input } from '../ui/input'
-import { Label } from '../ui/label'
-import { PasswordInput } from '../ui/password-input'
 import { useActionState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+  CardDescription,
+} from '@/components/ui/card'
+import { ErrorMessage } from '@/components/ui/error-message'
+import { Input } from '@/components/ui/input'
+import { PasswordInput } from '@/components/ui/password-input'
+import { Label } from '@radix-ui/react-label'
+import { Separator } from '@radix-ui/react-separator'
+import { Link } from 'lucide-react'
 
 const initialState: CustomResponse<SignInReturnSchema> = {
   data: null,

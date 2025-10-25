@@ -1,4 +1,4 @@
-import { PasswordLostForm } from '@/components/forms/password-lost'
+import { PasswordLostForm } from '@/components/templates/forms/password-lost'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
