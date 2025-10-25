@@ -1,7 +1,12 @@
+import { photosGet } from '@/actions/photos-get'
+import FeedWrapper from '@/components/templates/feed-wrapper'
+
 export default async function AppPage() {
+  const data = await photosGet()
+
   return (
     <main>
-      <h1>Dogs Next</h1>
+      <FeedWrapper data={data} />
     </main>
   )
 }

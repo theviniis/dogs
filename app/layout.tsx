@@ -2,6 +2,9 @@ import type { Metadata } from 'next'
 import { typeSecond } from '@/lib/fonts'
 import './globals.css'
 import { cn } from '@/lib/utils'
+import HeaderWrapper from '@/components/templates/header-wrapper'
+import FooterWrapper from '@/components/templates/footer-wrapper'
+import { Toaster } from '@/components/ui/sonner'
 
 export const metadata: Metadata = {
   title: 'Dogs Next',
@@ -15,7 +18,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(typeSecond.variable, 'antialiased')}>{children}</body>
+      <body className={cn(typeSecond.variable, 'antialiased')}>
+        <div className="flex min-h-[calc(100dvh+var(--footer-height))] flex-col">
+          <HeaderWrapper />
+          <main className="flex-1">
+            <section>{children}</section>
+          </main>
+          <FooterWrapper />
+          <Toaster />
+        </div>
+      </body>
     </html>
   )
 }
