@@ -4,6 +4,7 @@ import { SignUpSchema } from '@/schema/signup'
 import { PasswordLostSchema } from '@/schema/password-lost'
 import { PasswordResetSchema } from '@/schema/password-reset'
 import { Photo } from '@/types/photo'
+import { PostCommentSchema } from '@/schema/post-comment'
 
 const DEFAULT_URL = process.env.API_URL + '/json'
 
@@ -145,6 +146,20 @@ const photoDelete = (id: number, token: string): CustomApi => {
   ]
 }
 
+const postComment = (formData: PostCommentSchema, token: string): CustomApi => {
+  return [
+    DEFAULT_URL + '/api/comment/' + formData.id,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      },
+      body: JSON.stringify(formData),
+    },
+  ]
+}
+
 const api = {
   photosGet,
   signIn,
@@ -155,6 +170,7 @@ const api = {
   photoUpload,
   photoGet,
   photoDelete,
+  postComment,
 }
 
 export default api

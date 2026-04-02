@@ -6,11 +6,9 @@ import { PhotoDelete } from '../ui/photo-delete'
 import { Button } from '../ui/button'
 import { cn } from '@/lib/utils'
 import { Eye } from 'lucide-react'
-import { notFound } from 'next/navigation'
 import { ComponentProps } from 'react'
 
 type PhotoContentProps = {
-  // data: PhotoDetail | null
   isSingle?: boolean
 }
 
@@ -114,25 +112,29 @@ const Stats = ({ photo }: { photo: PhotoDetail['photo'] }) => {
   )
 }
 
-type InfoProps = {
-  photo: PhotoDetail['photo']
-  user: Awaited<ReturnType<typeof userGet>>
-}
+type InfoProps = ComponentProps<'div'>
 
-const Info = ({ photo, user }: InfoProps) => {
+const Info = ({ className, ...props }: InfoProps) => {
   return (
-    <div className="space-y-2 sm:mt-4 lg:px-6">
-      <Meta photo={photo} user={user} />
-      <Title photo={photo} />
-      <Stats photo={photo} />
-    </div>
+    <div
+      className={cn(
+        'grid grid-cols-1 grid-rows-[auto_auto_auto_1fr_auto] space-y-2 lg:px-6',
+        className
+      )}
+      {...props}
+    />
   )
 }
 
 const component = {
   Root,
   Image,
-  Info,
+  Info: {
+    Root: Info,
+    Meta,
+    Title,
+    Stats,
+  },
 }
 
 export default component

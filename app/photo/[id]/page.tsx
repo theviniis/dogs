@@ -1,6 +1,7 @@
 import { photoGet } from '@/actions/photo-get'
 import { userGet } from '@/actions/user-get'
 import PhotoContent from '@/components/molecules/photo-content'
+import PhotoComments from '@/components/molecules/comments'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
@@ -31,7 +32,7 @@ export default async function PhotoIdPage({ params }: PhotoIdParams) {
 
   if (!photoData) return notFound()
 
-  const { photo } = photoData
+  const { photo, comments } = photoData
 
   const user = await userGet()
 
@@ -39,7 +40,20 @@ export default async function PhotoIdPage({ params }: PhotoIdParams) {
     <main className="container my-4 grid">
       <PhotoContent.Root>
         <PhotoContent.Image src={photo.src} alt={photo.title} />
-        <PhotoContent.Info photo={photo} user={user} />
+        <PhotoContent.Info.Root>
+          <PhotoContent.Info.Meta photo={photo} user={user} />
+          <PhotoContent.Info.Title photo={photo} />
+          <PhotoContent.Info.Stats photo={photo} />
+          <PhotoComments.List comments={comments}>
+            {comments.map((comment) => (
+              <PhotoComments.Comment
+                key={comment.comment_ID}
+                comment={comment}
+              />
+            ))}
+          </PhotoComments.List>
+          {user && <PhotoComments.Post photoId={photo.id} />}
+        </PhotoContent.Info.Root>
       </PhotoContent.Root>
     </main>
   )
