@@ -23,7 +23,7 @@ const Root = async ({
       className={cn(
         'grid-cols-[minmax(20rem,40rem)] overflow-hidden',
         'md:h-144 md:grid-cols-[36rem_20rem] md:overflow-y-auto',
-        'bg-background m-auto grid grid-rows-[auto_1fr_auto] rounded',
+        'bg-background m-auto grid grid-rows-[auto_1fr_auto]',
         { 'h-auto grid-cols-1': isSingle },
         className
       )}
@@ -44,7 +44,7 @@ const Image = ({
       alt={alt}
       width={1000}
       height={1000}
-      className={cn('grid-rows-[1/4] rounded md:row-1', className)}
+      className={cn('grid-rows-[1/4] rounded-4xl md:row-1', className)}
       {...props}
     />
   )

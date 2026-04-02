@@ -11,7 +11,7 @@ export const ErrorMessage = ({
     <p
       className={cn(
         className,
-        'text-destructive rounded bg-red-500/5 p-2 text-sm'
+        'text-destructive rounded-4xl bg-red-500/5 px-3 py-2 text-sm'
       )}
       {...props}
     >
