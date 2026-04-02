@@ -37,6 +37,7 @@ pnpm format
 
 ## Code Style & Conventions
 
+- **Pattern**: Compound component pattern for composite UI (export default component object with Root, Option, Title, etc.)
 - **Formatter**: Prettier with `prettier-plugin-tailwindcss`
 - **Linter**: ESLint with `eslint-config-next/core-web-vitals`, `eslint-config-next/typescript`, and `eslint-plugin-react-hooks`
 - **Styling**: Tailwind CSS v4 with `tailwindcss-animate-css`
