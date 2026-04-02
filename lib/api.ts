@@ -3,17 +3,42 @@ import '../envConfig'
 import { SignUpSchema } from '@/schema/signup'
 import { PasswordLostSchema } from '@/schema/password-lost'
 import { PasswordResetSchema } from '@/schema/password-reset'
+import { Photo } from '@/types/photo'
 
 const DEFAULT_URL = process.env.API_URL + '/json'
 
-const photoGet = (): CustomApi => {
+export type PhotosGetParams = {
+  page?: number
+  total?: number
+  user?: 0 | string
+}
+
+const photoGet = (id: Photo['id']): CustomApi => {
   return [
-    DEFAULT_URL + '/api/photo',
+    DEFAULT_URL + `/api/photo/${id}`,
     {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
+      next: { revalidate: 60, tags: ['photos', 'comment'] },
+    },
+  ]
+}
+
+const photosGet = (
+  { page = 1, total = 6, user = 0 }: PhotosGetParams = {},
+  options?: RequestInit
+): CustomApi => {
+  return [
+    DEFAULT_URL + `/api/photo/?_page=${page}&_total=${total}&_user=${user}`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      next: { revalidate: 60, tags: ['photos'] },
+      ...options,
     },
   ]
 }
@@ -69,7 +94,7 @@ const passwordReset = ({
     {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': '',
       },
       body: JSON.stringify({
         login: username,
@@ -79,12 +104,56 @@ const passwordReset = ({
   ]
 }
 
+const userGet = (token: string): CustomApi => {
+  return [
+    DEFAULT_URL + '/api/user',
+    {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+      next: {
+        revalidate: 60,
+      },
+    },
+  ]
+}
+
+const photoUpload = (formData: FormData, token: string): CustomApi => {
+  return [
+    DEFAULT_URL + '/api/photo',
+    {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+      body: formData,
+    },
+  ]
+}
+
+const photoDelete = (): CustomApi => {
+  return [
+    DEFAULT_URL + '/api/photo',
+    {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    },
+  ]
+}
+
 const api = {
-  photoGet,
+  photosGet,
   signIn,
   signUp,
   passwordLost,
   passwordReset,
+  userGet,
+  photoUpload,
+  photoGet,
+  photoDelete,
 }
 
 export default api
