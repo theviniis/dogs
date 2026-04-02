@@ -160,6 +160,22 @@ const postComment = (formData: PostCommentSchema, token: string): CustomApi => {
   ]
 }
 
+const statsGet = (token: string): CustomApi => {
+  return [
+    DEFAULT_URL + '/api/stats/',
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      },
+      next: {
+        revalidate: 60,
+      },
+    },
+  ]
+}
+
 const api = {
   photosGet,
   signIn,
@@ -171,6 +187,7 @@ const api = {
   photoGet,
   photoDelete,
   postComment,
+  statsGet,
 }
 
 export default api

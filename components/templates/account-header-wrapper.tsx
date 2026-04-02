@@ -12,7 +12,7 @@ const { Root, Nav, Title, Option, Label } = AccountHeader
 
 const getAccountHeaderTitle = (pathname: string): string => {
   switch (pathname) {
-    case '/dashboard':
+    case '/account/dashboard':
       return 'Dashboard'
     case '/account/upload':
       return 'Upload your picture'
