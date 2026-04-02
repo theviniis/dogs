@@ -132,13 +132,14 @@ const photoUpload = (formData: FormData, token: string): CustomApi => {
   ]
 }
 
-const photoDelete = (id: number): CustomApi => {
+const photoDelete = (id: number, token: string): CustomApi => {
   return [
     DEFAULT_URL + '/api/photo/' + id,
     {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
       },
     },
   ]

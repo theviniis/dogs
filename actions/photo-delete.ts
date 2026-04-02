@@ -2,23 +2,28 @@
 
 import api from '@/lib/api'
 import { Photo } from '@/types/photo'
+import { revalidateTag } from 'next/cache'
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 
 export const photoDelete = async (
   id: Photo['id']
 ): Promise<CustomResponse<null>> => {
+  const cookie = await cookies()
+
+  const token = cookie.get('token')?.value
+
   try {
-    const [url, options] = api.photoDelete(id)
+    if (!token) {
+      throw new Error('Token not found.')
+    }
+
+    const [url, options] = api.photoDelete(id, token)
 
     const response = await fetch(url, options)
 
     if (!response.ok) {
       throw new Error('Error while deleting photo.')
-    }
-
-    return {
-      data: null,
-      ok: true,
-      error: null,
     }
   } catch (err) {
     return {
@@ -27,4 +32,7 @@ export const photoDelete = async (
       error: err instanceof Error ? err.message : 'Unknown error',
     }
   }
+
+  revalidateTag('photos', { expire: 0 })
+  redirect('/account')
 }
