@@ -82,6 +82,7 @@ Client-side state managed via React Context in `store/user-provider.tsx`. API co
 
 ## Agent Guardrails
 
+- Do **not** commit changes automatically; only commit when the user explicitly asks
 - Do **not** modify `node_modules/`, `.next/`, or `pnpm-lock.yaml`
 - Do **not** commit secrets or `.env` files
 - Require review for changes to `lib/api.ts` or authentication flows
