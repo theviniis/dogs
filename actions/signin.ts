@@ -21,8 +21,6 @@ export const signIn = async (
 
     const [url, options] = api.signIn(parsedData.data)
 
-    console.log({ url, options })
-
     const response = await fetch(url, options)
 
     if (!response.ok) throw new Error('Username and/or password are wrong.')
