@@ -8,3 +8,15 @@ export type Photo = {
   idade: string
   acessos: number
 }
+
+export type Comment = {
+  comment_ID: string
+  comment_post_ID: string
+  comment_author: string
+  comment_content: string
+}
+
+export type PhotoDetail = {
+  photo: Photo
+  comments: Comment[]
+}

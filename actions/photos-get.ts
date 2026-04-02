@@ -1,11 +1,33 @@
 'use server'
 
-import api from '@/lib/api'
+import api, { PhotosGetParams } from '@/lib/api'
 import { Photo } from '@/types/photo'
 
-export const photosGet = async () => {
-  const [url] = api.photoGet()
-  const response = await fetch(url)
-  const data = await response.json()
-  return data as Photo[]
+export const photosGet = async (
+  params?: PhotosGetParams,
+  optionsFront?: RequestInit
+): Promise<CustomResponse<Photo[]>> => {
+  try {
+    const [url, options] = api.photosGet(params, optionsFront)
+
+    const response = await fetch(url, options)
+
+    if (!response.ok) {
+      throw new Error('Error while getting photos.')
+    }
+
+    const data = (await response.json()) as Photo[]
+
+    return {
+      data,
+      ok: true,
+      error: null,
+    }
+  } catch (err) {
+    return {
+      data: null,
+      ok: false,
+      error: err.message,
+    }
+  }
 }
