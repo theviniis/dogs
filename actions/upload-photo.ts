@@ -11,7 +11,9 @@ export const uploadPhoto = async (
   formData: FormData
 ): Promise<CustomResponse> => {
   try {
-    const token = (await cookies()).get('token')?.value
+    const cookie = await cookies()
+
+    const token = cookie.get('token')?.value
     const nome = formData.get('nome') as string | null
     const idade = Number(formData.get('idade'))
     const peso = Number(formData.get('peso'))
@@ -29,7 +31,7 @@ export const uploadPhoto = async (
     }
 
     if (!token) {
-      throw new Error('Token not found.')
+      throw new Error('Token not valid.')
     }
 
     const [url, options] = api.photoUpload(formData, token)

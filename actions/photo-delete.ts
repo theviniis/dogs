@@ -15,7 +15,7 @@ export const photoDelete = async (
 
   try {
     if (!token) {
-      throw new Error('Token not found.')
+      throw new Error('Token not valid.')
     }
 
     const [url, options] = api.photoDelete(id, token)

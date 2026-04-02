@@ -6,14 +6,14 @@ import { cookies } from 'next/headers'
 
 export const userGet = async () => {
   const cookie = await cookies()
-  const token = cookie.get('token')
+  const token = cookie.get('token')?.value
 
   try {
-    if (!token?.value) {
+    if (!token) {
       throw new Error('Token not valid.')
     }
 
-    const [url, options] = api.userGet(token.value)
+    const [url, options] = api.userGet(token)
 
     const response = await fetch(url, options)
 
