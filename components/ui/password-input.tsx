@@ -9,8 +9,7 @@ import { useState } from 'react'
 
 export const PasswordInput = ({ className, ...props }: InputProps) => {
   const [showPassword, setShowPassword] = useState(false)
-  const disabled =
-    props.value === '' || props.value === undefined || props.disabled
+  const isDisabled = props.disabled ?? !!props.value
 
   return (
     <div className="relative">
@@ -25,9 +24,9 @@ export const PasswordInput = ({ className, ...props }: InputProps) => {
         size="sm"
         className="absolute top-0 right-0 h-full px-3 py-2 hover:bg-transparent"
         onClick={() => setShowPassword((prev) => !prev)}
-        disabled={disabled}
+        disabled={isDisabled}
       >
-        {showPassword && !disabled ? (
+        {showPassword && !isDisabled ? (
           <EyeIcon className="h-4 w-4" aria-hidden="true" />
         ) : (
           <EyeOffIcon className="h-4 w-4" aria-hidden="true" />

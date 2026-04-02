@@ -12,7 +12,13 @@ const Photo = ({
   ...props
 }: { photo: PhotoType; index: number } & ComponentProps<'li'>) => {
   return (
-    <li className={cn(className, 'overflow-hidden rounded-sm')} {...props}>
+    <li
+      className={cn(
+        className,
+        'overflow-hidden rounded-sm nth-[2]:col-[2/4] nth-[2]:row-span-2'
+      )}
+      {...props}
+    >
       <Link
         href={`/photo/${photo.id}`}
         scroll={false}
@@ -29,7 +35,7 @@ const Photo = ({
         />
         <div className="bg-foreground/80 text-background col-[1/1] row-[1/1] hidden place-content-center transition-colors group-hover:grid"></div>
         <span className="text-background col-[1/1] row-[1/1] hidden items-center justify-center gap-2 transition group-hover:flex">
-          <Eye size={16} />
+          <Eye />
           {photo.acessos}
         </span>
       </Link>
@@ -37,16 +43,9 @@ const Photo = ({
   )
 }
 
-const Feed = ({ className, ...props }: ComponentProps<'ul'>) => {
-  return (
-    <ul
-      className={cn(
-        'container my-4 grid grid-cols-[repeat(auto-fit,minmax(340px,1fr))] gap-4',
-        className
-      )}
-      {...props}
-    />
-  )
+export type FeedProps = ComponentProps<'ul'>
+const Feed = ({ className, ...props }: FeedProps) => {
+  return <ul className={cn('grid grid-cols-3 gap-4', className)} {...props} />
 }
 
 const component = {

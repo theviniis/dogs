@@ -18,8 +18,9 @@ import { ErrorMessage } from '@/components/ui/error-message'
 import { Input } from '@/components/ui/input'
 import { PasswordInput } from '@/components/ui/password-input'
 import { Label } from '@radix-ui/react-label'
-import { Separator } from '@radix-ui/react-separator'
-import { Link } from 'lucide-react'
+import Link from 'next/link'
+import { Separator } from '@/components/ui/separator'
+import { LogIn } from 'lucide-react'
 
 const initialState: CustomResponse<SignInReturnSchema> = {
   data: null,
@@ -68,7 +69,17 @@ export const SignInForm = () => {
             />
           </FormItem>
 
+          <Button
+            className="h-min w-full p-0"
+            variant="link"
+            type="button"
+            asChild
+          >
+            <Link href="/auth/password/lost">Lost your password?</Link>
+          </Button>
+
           <Button className="w-full" type="submit" disabled={isPending}>
+            <LogIn />
             Sign in
           </Button>
 
@@ -76,19 +87,11 @@ export const SignInForm = () => {
         </CardContent>
 
         <CardFooter className="flex w-full flex-col items-start gap-6">
-          <div className="w-full space-y-6">
-            <Separator />
-
-            <Button className="h-0 p-0" variant="link" type="button" asChild>
-              <Link href="/auth/password/lost">Lost your password?</Link>
-            </Button>
-          </div>
+          <Separator />
 
           <div className="space-y-2">
             <h2>Sign up</h2>
-
-            <CardDescription>Dont have an account? Sign up!</CardDescription>
-
+            <CardDescription>Dont have an account?</CardDescription>
             <Button variant="outline" type="button" asChild>
               <Link href="/auth/signup">Sign up</Link>
             </Button>

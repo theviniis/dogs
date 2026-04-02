@@ -16,9 +16,10 @@ import {
 } from '@/components/ui/card'
 import { ErrorMessage } from '@/components/ui/error-message'
 import { Label } from '@radix-ui/react-label'
-import { Separator } from '@radix-ui/react-separator'
-import { Link } from 'lucide-react'
 import { useActionState, useEffect } from 'react'
+import Link from 'next/link'
+import { Separator } from '@/components/ui/separator'
+import { LogIn, LogOut } from 'lucide-react'
 
 const initialState: CustomResponse<SignUpReturnSchema> = {
   data: null,
@@ -81,6 +82,7 @@ export const SignUpForm = () => {
             </FormItem>
 
             <Button className="w-full" type="submit">
+              <LogOut />
               Sign up
             </Button>
 
@@ -96,7 +98,10 @@ export const SignUpForm = () => {
             <h2>Sign in</h2>
             <CardDescription>Already have an account? Sign in!</CardDescription>
             <Button variant="outline" asChild disabled={isPending}>
-              <Link href="/auth/signin">Sign in</Link>
+              <Link href="/auth/signin">
+                <LogIn />
+                Sign in
+              </Link>
             </Button>
           </div>
         </CardFooter>
