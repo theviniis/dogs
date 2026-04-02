@@ -12,11 +12,12 @@ const CommentsList = ({ className, comments, ...props }: ListProps) => {
   const ref = useRef<HTMLUListElement>(null)
 
   useEffect(() => {
-    if (ref.current) ref.current.scrollTop = ref.current.scrollHeight
+    if (ref.current) ref.current.scrollTop = 0
   }, [comments])
 
   return (
     <ul
+      ref={ref}
       className={cn(
         'space-y-2 overflow-y-auto scroll-smooth py-4 wrap-break-word',
         className

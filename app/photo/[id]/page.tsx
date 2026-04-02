@@ -45,7 +45,7 @@ export default async function PhotoIdPage({ params }: PhotoIdParams) {
           <PhotoContent.Info.Title photo={photo} />
           <PhotoContent.Info.Stats photo={photo} />
           <PhotoComments.List comments={comments}>
-            {comments.map((comment) => (
+            {comments.reverse().map((comment) => (
               <PhotoComments.Comment
                 key={comment.comment_ID}
                 comment={comment}

@@ -21,8 +21,8 @@ const Root = async ({
   return (
     <div
       className={cn(
-        'h-144 grid-cols-[minmax(20rem,40rem)] overflow-hidden',
-        'md:max-h-[calc(100dvh - 4rem)] md:h-auto md:grid-cols-[36rem_20rem] md:overflow-y-auto',
+        'grid-cols-[minmax(20rem,40rem)] overflow-hidden',
+        'md:h-144 md:grid-cols-[36rem_20rem] md:overflow-y-auto',
         'bg-background m-auto grid grid-rows-[auto_1fr_auto] rounded',
         { 'h-auto grid-cols-1': isSingle },
         className
@@ -118,7 +118,7 @@ const Info = ({ className, ...props }: InfoProps) => {
   return (
     <div
       className={cn(
-        'grid grid-cols-1 grid-rows-[auto_auto_auto_1fr_auto] space-y-2 lg:px-6',
+        'grid grid-cols-1 grid-rows-[auto_auto_auto_1fr_auto] space-y-2 overflow-hidden lg:px-6',
         className
       )}
       {...props}
