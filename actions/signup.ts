@@ -1,8 +1,15 @@
 'use server'
 
 import api from '@/lib/api'
+import { SignInReturnSchema } from '@/schema/signin'
 import { SignUpReturnSchema, signUpSchema } from '@/schema/signup'
 import { signIn } from './signin'
+
+const initialState: CustomResponse<SignInReturnSchema> = {
+  data: null,
+  error: null,
+  ok: false,
+}
 
 export const signUp = async (
   _prevState: CustomResponse<SignUpReturnSchema>,
@@ -31,7 +38,7 @@ export const signUp = async (
 
     const data: SignUpReturnSchema = await response.json()
 
-    const { ok } = await signIn(null, formData)
+    const { ok } = await signIn(initialState, formData)
 
     if (!ok) {
       throw new Error('Error while sign in')
