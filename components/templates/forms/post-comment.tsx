@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { ErrorMessage } from '@/components/ui/error-message'
 import { Textarea } from '@/components/ui/textarea'
 import { cn } from '@/lib/utils'
-import { ComponentProps, useActionState } from 'react'
+import { ComponentProps, useActionState, useRef } from 'react'
 import { useFormStatus } from 'react-dom'
 import { Comment } from '@/types/photo'
 
@@ -30,6 +30,17 @@ const PostComment = ({
     postComment,
     initialState
   )
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault()
+      const form = e.currentTarget.form
+      if (form) {
+        form.requestSubmit()
+      }
+    }
+  }
 
   return (
     <form
@@ -43,12 +54,14 @@ const PostComment = ({
 
       <div className="grid grid-cols-[1fr_auto] gap-2">
         <Textarea
+          ref={textareaRef}
           className="min-h-28"
           name="comment"
           id="comment"
           placeholder="Write your comment here..."
           required
           disabled={isPending}
+          onKeyDown={handleKeyDown}
         />
         <input
           name="photoId"
