@@ -12,11 +12,25 @@ Write tests for new features and bug fixes. Unit tests for utilities and hooks. 
 
 ### III. User Experience Consistency
 
-Use existing UI components from `components/ui/`. Follow design patterns established in `components/molecules/` and `components/templates/`. Maintain consistent spacing, typography, and color usage via Tailwind CSS. Handle loading, error, and empty states for every data fetch. Ensure accessibility (keyboard navigation, ARIA labels).
+Always prefer shadcn/ui components from `components/ui/` before building custom solutions. Extend them via compound components or `className` overrides when needed. Only create custom components when shadcn lacks required functionality. Follow design patterns established in `components/molecules/` and `components/templates/`. Maintain consistent spacing, typography, and color usage via Tailwind CSS. Handle loading, error, and empty states for every data fetch. Ensure accessibility (keyboard navigation, ARIA labels).
 
 ### IV. Performance Requirements
 
 Optimize images with Next.js Image component. Lazy load routes and heavy components. Debounce user input in search/filter forms. Minimize client-side state; prefer server components. Monitor bundle size; no large dependencies without justification. Use proper caching with Next.js revalidate tags.
+
+## Commit Conventions
+
+Use conventional commits with semantic messages:
+
+- `feat:` new feature
+- `fix:` bug fix
+- `refactor:` code restructure without behavior change
+- `docs:` documentation only
+- `chore:` maintenance, deps, tooling
+- `style:` formatting, no logic change
+- `test:` adding/updating tests
+
+Format: `type: description` (imperative mood, lowercase). Keep lines under 72 characters. Reference issues when applicable.
 
 ## Code Style
 
@@ -26,6 +40,7 @@ Optimize images with Next.js Image component. Lazy load routes and heavy compone
 - Types: Explicit typing; avoid `any`
 - Styling: Tailwind CSS v4 classes; no inline styles unless dynamic
 - Imports: Absolute imports via `@/` alias
+- Components: Compound component pattern for composite UI (export default component object with Root, Option, Title, etc.)
 
 ## Development Workflow
 
