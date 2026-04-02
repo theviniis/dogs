@@ -17,7 +17,7 @@ const PhotoContent = async ({ data, isSingle = false }: PhotoContentProps) => {
   if (!data) return notFound()
   const user = await userGet()
 
-  const { photo, comments } = data
+  const { photo } = data
   return (
     <div
       className={cn(

@@ -1,6 +1,5 @@
-import { ComponentProps, ReactNode } from 'react'
+import { ComponentProps } from 'react'
 import { Button, ButtonProps } from '../ui/button'
-import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
 const Root = ({ className, ...props }: ComponentProps<'header'>) => {
